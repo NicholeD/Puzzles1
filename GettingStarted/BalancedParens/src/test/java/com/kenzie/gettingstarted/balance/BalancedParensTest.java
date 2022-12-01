@@ -15,14 +15,14 @@ public class BalancedParensTest {
     @ParameterizedTest
     @MethodSource("iDoTestCases")
     public void iDoBalancedParensTest(String input, boolean expected) {
-        boolean result = solutions.instructorMethodHere(input);
+        boolean result = solutions.areParensBalanced(input);
         assertEquals(expected, result);
     }
 
     @ParameterizedTest
     @MethodSource("weDoTestCases")
     public void weDoBalancedParensTest(String input, boolean expected) {
-        boolean result = solutions.ourMethodHere(input);
+        boolean result = solutions.stackAreParensBalanced(input);
         assertEquals(expected, result);
     }
 
