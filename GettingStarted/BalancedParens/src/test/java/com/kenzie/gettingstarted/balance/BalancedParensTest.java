@@ -29,7 +29,7 @@ public class BalancedParensTest {
     @ParameterizedTest
     @MethodSource("youDoTestCases")
     public void youDoBalancedParensTest(String input, boolean expected) {
-        boolean result = solutions.yourMethodHere(input);
+        boolean result = solutions.smileyAreParensBalanced(input);
         assertEquals(expected, result);
     }
 
