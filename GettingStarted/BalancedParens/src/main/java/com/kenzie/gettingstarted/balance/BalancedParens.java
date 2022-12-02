@@ -1,9 +1,6 @@
 package com.kenzie.gettingstarted.balance;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Drills to apply the problem-solving framework on variations of the Balanced Parentheses problem.
@@ -76,8 +73,73 @@ public class BalancedParens {
      * @param text A text String, described in the classroom.
      * @return True as described in the classroom, false otherwise.
      */
-    public boolean yourMethodHere(String text) {
+    public boolean smileyAreParensBalanced(String text) {
+        List<Character> openGroupings = getOpenGroupingChars();
+        List<Character> closingGroupings = getClosingGroupingChars();
+
+        Stack<Character> openParensStack = new Stack<>();
+        char[] textList = text.toCharArray();
+
+        for (char i : textList) {
+
+            if (openParensStack.empty() && (openGroupings.contains(i) || i == ':')) {
+                openParensStack.push(i);
+
+            } else if (openParensStack.empty() && closingGroupings.contains(i)) {
+                return false;
+
+            } else if (!openParensStack.empty()) {
+                char charPeek = openParensStack.peek();
+
+                if (charPeek == ':' && i == ':') {
+                    openParensStack.pop();
+                    openParensStack.push(i);
+
+                } else if (charPeek == ':') {
+                    openParensStack.pop();
+
+                } else if (openGroupings.contains(i) || i == ':'){
+                    openParensStack.push(i);
+
+                } else if (closingGroupings.contains(i) && isGroupingMatch(charPeek, i)){
+                    openParensStack.pop();
+
+                } else if (closingGroupings.contains(i) && !isGroupingMatch(charPeek, i)) {
+                    return false;
+                }
+            }
+        }
+        //return whether the stack is empty
+        return openParensStack.empty();
+    }
+
+    public List<Character> getClosingGroupingChars() {
+        List<Character> groupingChars = new ArrayList<Character>();
+        groupingChars.add(')');
+        groupingChars.add('}');
+        groupingChars.add(']');
+        return groupingChars;
+    }
+
+    public List<Character> getOpenGroupingChars() {
+        List<Character> groupingChars = new ArrayList<Character>();
+        groupingChars.add('(');
+        groupingChars.add('{');
+        groupingChars.add('[');
+        return groupingChars;
+    }
+
+    private boolean isGroupingMatch(Character popped, Character index) {
+        Map<Character, Character> groupingPairs = new HashMap<>();
+        groupingPairs.put('(', ')');
+        groupingPairs.put('{', '}');
+        groupingPairs.put('[', ']');
+
+        if (groupingPairs.get(popped) == index) {
+            return true;
+        }
         return false;
     }
+
 
 }
