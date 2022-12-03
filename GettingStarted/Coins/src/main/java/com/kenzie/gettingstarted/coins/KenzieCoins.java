@@ -2,6 +2,7 @@ package com.kenzie.gettingstarted.coins;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Use this to explore solutions to the Pair-Sum interview problem.
@@ -33,6 +34,15 @@ public class KenzieCoins {
      * @return True if any two values sum to the provided balance, false otherwise.
      */
     public boolean anyPairSumsToBalance(int balance, List<Integer> values) {
+
+        for (int i = 0; i < values.size(); i ++) {
+            for (int j = i + 1; j < values.size(); j++) {
+                if ((values.get(i) + values.get(j)) == balance) {
+                    System.out.println("True");
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -46,7 +56,15 @@ public class KenzieCoins {
      * @return A list of pairs of numbers from `values` that sum to the `balance`.
      */
     public List<Pair> findPairsThatSumToBalance(int balance, List<Integer> values) {
-        return new ArrayList<>();
-    }
+        List<Pair> pairsSumToBalance = new ArrayList<>();
 
+        for (int i = 0; i < values.size(); i ++) {
+            for (int j = i + 1; j < values.size(); j++) {
+                if ((values.get(i) + values.get(j)) == balance) {
+                    pairsSumToBalance.add(new Pair(values.get(i), values.get(j)));
+                }
+            }
+        }
+        return pairsSumToBalance;
+    }
 }
