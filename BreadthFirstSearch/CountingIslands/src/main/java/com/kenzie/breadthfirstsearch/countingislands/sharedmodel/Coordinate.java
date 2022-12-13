@@ -1,6 +1,9 @@
 package com.kenzie.breadthfirstsearch.countingislands.sharedmodel;
 
 import java.util.Objects;
+import java.util.UUID;
+
+import static java.util.UUID.randomUUID;
 
 /**
  * An immutable class that represents coordinates within a 2D array in row:column coordinates.
@@ -8,6 +11,7 @@ import java.util.Objects;
 public class Coordinate {
     private final int row;
     private final int column;
+    public UUID islandId;
 
     public Coordinate(int row, int column) {
         this.row = row;
@@ -20,6 +24,14 @@ public class Coordinate {
 
     public int getColumn() {
         return column;
+    }
+
+    public void setIslandId(UUID uuid) {
+        this.islandId = uuid;
+    }
+
+    public UUID getIslandId() {
+        return islandId;
     }
 
     @Override
