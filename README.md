@@ -1,1 +1,1 @@
-Puzzles 1
+Code Puzzles 1
